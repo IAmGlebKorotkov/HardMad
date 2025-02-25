@@ -37,6 +37,20 @@
 			);
 			target = 9F9750102D6515B900A2B7F1 /* HARDMAD 2 */;
 		};
+		9F97504E2D679ECD00A2B7F1 /* Exceptions for "HARDMAD 2" folder in "HARDMAD 2Tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				font/Gwen.otf,
+			);
+			target = 9F9750262D6515BC00A2B7F1 /* HARDMAD 2Tests */;
+		};
+		9F97504F2D679ECD00A2B7F1 /* Exceptions for "HARDMAD 2" folder in "HARDMAD 2UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				font/Gwen.otf,
+			);
+			target = 9F9750302D6515BC00A2B7F1 /* HARDMAD 2UITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +58,8 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				9F9750392D6515BC00A2B7F1 /* Exceptions for "HARDMAD 2" folder in "HARDMAD 2" target */,
+				9F97504E2D679ECD00A2B7F1 /* Exceptions for "HARDMAD 2" folder in "HARDMAD 2Tests" target */,
+				9F97504F2D679ECD00A2B7F1 /* Exceptions for "HARDMAD 2" folder in "HARDMAD 2UITests" target */,
 			);
 			path = "HARDMAD 2";
 			sourceTree = "<group>";
@@ -294,7 +310,6 @@
 				INFOPLIST_FILE = "HARDMAD 2/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +337,6 @@
 				INFOPLIST_FILE = "HARDMAD 2/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -13,7 +13,7 @@ import UIKit
 class AnimatedGradientView: UIView {
     
     private var gradientLayers: [CAGradientLayer] = []
-    private let colors: [UIColor] = [.red, .green, .blue, .orange]
+    private let colors: [UIColor] = [.lorange, .lred, .lgreen, .lblue]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,19 +30,29 @@ class AnimatedGradientView: UIView {
     }
     
     private func setupGradientLayers() {
-        for color in colors {
+        for (index, color) in colors.enumerated() {
             let gradientLayer = CAGradientLayer()
             gradientLayer.colors = [color.withAlphaComponent(0.8).cgColor, color.withAlphaComponent(0.2).cgColor]
             gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
             gradientLayer.endPoint = CGPoint(x: 1, y: 1)
             gradientLayer.type = .radial
             
-            // Делаем слой квадратным
-            let size = max(bounds.width, bounds.height) // Размер круга
+            let size = max(bounds.width, bounds.height) * 1.5
             gradientLayer.frame = CGRect(x: 0, y: 0, width: size, height: size)
-            gradientLayer.position = CGPoint(x: bounds.midX, y: bounds.midY) // Центрируем
             
-            // Делаем слой круглым
+            switch index {
+            case 0:
+                gradientLayer.position = CGPoint(x: bounds.width * 0.25, y: bounds.height * 0.75)
+            case 1:
+                gradientLayer.position = CGPoint(x: bounds.width * 0.75, y: bounds.height * 0.75)
+            case 2:
+                gradientLayer.position = CGPoint(x: 0, y: bounds.height * 0.25)
+            case 3:
+                gradientLayer.position = CGPoint(x: bounds.width * 0.75, y: 0)
+            default:
+                break
+            }
+            
             gradientLayer.cornerRadius = size / 2
             gradientLayer.masksToBounds = true
             
@@ -54,7 +64,8 @@ class AnimatedGradientView: UIView {
     private func startAnimation() {
         for gradientLayer in gradientLayers {
             let animation = CABasicAnimation(keyPath: "position")
-            animation.fromValue = CGPoint(x: bounds.midX, y: bounds.midY)
+            animation.fromValue = gradientLayer.position
+            
             animation.toValue = CGPoint(x: CGFloat.random(in: 0...bounds.width),
                                         y: CGFloat.random(in: 0...bounds.height))
             animation.duration = 4.0
