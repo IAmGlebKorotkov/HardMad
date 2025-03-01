@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gwen.otf</string>
+		<string>VelaSans-GX.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

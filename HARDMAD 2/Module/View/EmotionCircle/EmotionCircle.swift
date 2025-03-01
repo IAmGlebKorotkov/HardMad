@@ -13,7 +13,7 @@ class EmotionViewController: UIViewController, UIScrollViewDelegate {
         let desc: String
     }
     var EmotionString = ""
-    
+    var EmotionColor: UIColor = .black
     let colors: [ColorDesc] = [
         ColorDesc(clr: .lred, desc: "Ярость"),
         ColorDesc(clr: .lred, desc: "Напряжение"),
@@ -45,31 +45,36 @@ class EmotionViewController: UIViewController, UIScrollViewDelegate {
     private let offsetDistance: CGFloat = 20
     
     private var pickButtonView: PickButtonView?
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         self.navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         contentView.isUserInteractionEnabled = false
         setupScrollView()
         setupCircles()
         
-        let plusButton = LeftButtonView()
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.layer.zPosition = 10
-        view.addSubview(plusButton)
-        view.bringSubviewToFront(plusButton)
+        let leftButton = LeftButtonView()
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        leftButton.layer.zPosition = 10
+        view.addSubview(leftButton)
+        view.bringSubviewToFront(leftButton)
         
         NSLayoutConstraint.activate([
-            plusButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
-            plusButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 68),
-            plusButton.widthAnchor.constraint(equalToConstant: 40),
-            plusButton.heightAnchor.constraint(equalToConstant: 40)
+            leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24),
+            leftButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 68),
+            leftButton.widthAnchor.constraint(equalToConstant: 40),
+            leftButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        if let button = plusButton.subviews.first(where: { $0 is UIButton }) as? UIButton {
-            button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        if let button = leftButton.subviews.first(where: { $0 is UIButton }) as? UIButton {
+            button.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
         }
         
         pickButtonView = PickButtonView(frame: CGRect(x: 0, y: 0, width: 100, height: 100),
@@ -79,13 +84,17 @@ class EmotionViewController: UIViewController, UIScrollViewDelegate {
         pickButtonView?.layer.zPosition = 10
         view.addSubview(pickButtonView!)
         view.bringSubviewToFront(pickButtonView!)
-        
+
         NSLayoutConstraint.activate([
             pickButtonView!.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pickButtonView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 764),
             pickButtonView!.widthAnchor.constraint(equalToConstant: 384),
             pickButtonView!.heightAnchor.constraint(equalToConstant: 80)
         ])
+        
+        if let button = pickButtonView?.subviews.first(where: { $0 is UIButton }) as? UIButton {
+            button.addTarget(self, action: #selector(pickButtonTapped), for: .touchUpInside)
+        }
     }
     
     private func setupScrollView() {
@@ -185,9 +194,9 @@ class EmotionViewController: UIViewController, UIScrollViewDelegate {
         
         if let closestCircle = closestCircle {
             EmotionString = colors[closestRow * gridSize + closestCol].desc
-            
+            EmotionColor = colors[closestRow * gridSize + closestCol].clr
             pickButtonView?.updateButton(
-                buttonColor: colors[closestRow * gridSize + closestCol].clr,
+                buttonColor: EmotionColor,
                 text: EmotionString
             )
         }
@@ -226,8 +235,17 @@ class EmotionViewController: UIViewController, UIScrollViewDelegate {
         circle.backgroundColor = .white
     }
     
-    @objc func plusButtonTapped() {
+    @objc func leftButtonTapped() {
         let journalController = JournalController()
         self.navigationController?.pushViewController(journalController, animated: false)
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    @objc func pickButtonTapped() {
+        let notesController = NotesController(
+            emotionColor: EmotionColor,
+            emotionText: EmotionString
+        )
+        self.navigationController?.pushViewController(notesController, animated: false)
     }
 }

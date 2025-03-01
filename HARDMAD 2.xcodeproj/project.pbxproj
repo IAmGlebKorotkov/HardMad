@@ -41,6 +41,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				font/Gwen.otf,
+				"font/VelaSans-GX.ttf",
 			);
 			target = 9F9750262D6515BC00A2B7F1 /* HARDMAD 2Tests */;
 		};
@@ -48,6 +49,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				font/Gwen.otf,
+				"font/VelaSans-GX.ttf",
 			);
 			target = 9F9750302D6515BC00A2B7F1 /* HARDMAD 2UITests */;
 		};
